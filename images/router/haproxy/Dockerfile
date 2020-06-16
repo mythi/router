@@ -32,6 +32,7 @@ RUN sed -i -e 's/cmn_ko$//' -e 's/lac_kernel$//' quickassist/Makefile && \
     ./configure \
     $QAT_ENGINE_FLAGS \
     --with-qat_dir=/ \
+    --enable-qat_debug \
     --with-openssl_install_dir=/usr/lib64 \
     --with-qat_install_dir=/usr/lib \
     --with-multibuff_dir=/ipp-crypto/sources/ippcp/crypto_mb \

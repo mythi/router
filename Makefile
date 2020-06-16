@@ -31,10 +31,10 @@ build:
 	$(GO_BUILD_RECIPE)
 
 images/router/*/Dockerfile: images/router/base/Dockerfile
-	imagebuilder -t registry.svc.ci.openshift.org/openshift/origin-v4.0:`basename $(@D)`-router -f images/router/`basename $(@D)`/Dockerfile .
+	docker build -t registry.svc.ci.openshift.org/openshift/origin-v4.0:`basename $(@D)`-router -f images/router/`basename $(@D)`/Dockerfile .
 
 images/router/*/Dockerfile.rhel: images/router/base/Dockerfile.rhel
-	imagebuilder -t registry.svc.ci.openshift.org/ocp/4.0:`basename $(@D)`-router -f images/router/`basename $(@D)`/Dockerfile.rhel .
+	docker build -t registry.svc.ci.openshift.org/ocp/4.0:`basename $(@D)`-router -f images/router/`basename $(@D)`/Dockerfile.rhel .
 
 check:
 	$(GO) test -race ./...
