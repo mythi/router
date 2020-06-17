@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -o nounset
+set -x
 
 config_file=/var/lib/haproxy/conf/haproxy.config
 pid_file=/var/lib/haproxy/run/haproxy.pid
@@ -72,6 +73,7 @@ function haproxyHealthCheck() {
 old_pids=$(pidof haproxy)
 
 # If signaled, stop accepting new connections and drain the current processes
+ROUTER_SHUTDOWN="fake"
 if [ -n "${ROUTER_SHUTDOWN-}" ]; then
   echo " - Shutting down"
   if [ -z "$old_pids" ]; then
@@ -81,13 +83,12 @@ if [ -n "${ROUTER_SHUTDOWN-}" ]; then
   for i in $( seq 1 $shutdown_wait_time ); do
     old_pids=$(pidof haproxy)
     if [ -z "$old_pids" ]; then
-      exit 0
+      break
     fi
     sleep 1
   done
   kill -TERM $old_pids
   echo "error: Some processes did not exit within ${shutdown_wait_time}s"
-  exit 1
 fi
 
 reload_status=0
