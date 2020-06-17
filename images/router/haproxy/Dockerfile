@@ -43,7 +43,7 @@ RUN sed -i -e 's/cmn_ko$//' -e 's/lac_kernel$//' quickassist/Makefile && \
 
 FROM clearlinux:base
 
-RUN INSTALL_PKGS="haproxy rsyslog curl" && \
+RUN INSTALL_PKGS="haproxy rsyslog curl strace" && \
     swupd bundle-add $INSTALL_PKGS && \
     mkdir -p /var/lib/haproxy/router/{certs,cacerts,whitelists} && \
     mkdir -p /var/lib/haproxy/{conf/.tmp,run,bin,log} && \
