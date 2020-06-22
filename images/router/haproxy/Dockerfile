@@ -34,6 +34,9 @@ RUN sed -i -e 's/cmn_ko$//' -e 's/lac_kernel$//' quickassist/Makefile && \
     --with-qat_dir=/ \
     --enable-qat_debug \
     --disable-qat_ecx \
+    --disable-qat_ciphers \
+    --disable-qat_prf \
+    --disable-qat_hkdf \
     --with-openssl_install_dir=/usr/lib64 \
     --with-qat_install_dir=/usr/lib \
     --with-multibuff_dir=/ipp-crypto/sources/ippcp/crypto_mb \
