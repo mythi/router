@@ -12,7 +12,7 @@ RUN swupd bundle-add --skip-diskspace-check devpkg-systemd devpkg-openssl c-basi
     tar xf *.tar.gz
 
 RUN sed -i -e 's/cmn_ko$//' -e 's/lac_kernel$//' quickassist/Makefile && \
-    KERNEL_SOURCE_ROOT=/tmp ./configure --enable-icp-debug --enable-icp-trace && \
+    KERNEL_SOURCE_ROOT=/tmp ./configure && \
     make quickassist-all adf-ctl-all && \
     install -m 755 build/libqat_s.so /usr/lib/ && \
     install -m 755 build/libusdm_drv_s.so /usr/lib/ && \
@@ -32,7 +32,6 @@ RUN sed -i -e 's/cmn_ko$//' -e 's/lac_kernel$//' quickassist/Makefile && \
     ./configure \
     $QAT_ENGINE_FLAGS \
     --with-qat_dir=/ \
-    --enable-qat_debug \
     --disable-qat_ecx \
     --disable-qat_ciphers \
     --disable-qat_prf \
